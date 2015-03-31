@@ -14,11 +14,12 @@ import os
 from os.path import join, dirname
 
 from configurations import Configuration, values
+from permissions import Permission
 
 BASE_DIR = dirname(dirname(__file__))
 
 
-class Common(Configuration):
+class Common(Permission):
 
     # APP CONFIGURATION
     DJANGO_APPS = (
@@ -42,6 +43,8 @@ class Common(Configuration):
         'allauth',  # registration
         'allauth.account',  # registration
         'allauth.socialaccount',  # registration
+        'guardian',
+        'smartmin',
     )
 
     # Apps specific for this project go here.
@@ -109,7 +112,7 @@ class Common(Configuration):
 
     # DATABASE CONFIGURATION
     # See: https://docs.djangoproject.com/en/dev/ref/settings/#databases
-    DATABASES = values.DatabaseURLValue('postgres://localhost/tutorial')
+    DATABASES = values.DatabaseURLValue('mysql://localhost/tutorial')
     # END DATABASE CONFIGURATION
 
     # CACHING
